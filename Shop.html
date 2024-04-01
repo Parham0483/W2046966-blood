@@ -1,0 +1,483 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<style>
+		body{
+			display: flex;
+			gap: 20px;
+			justify-content: space-around;
+			align-content: center;
+			text-align: center;
+			flex-direction: column;
+		}
+	.product-container1, 
+	.product-container2{
+		width: 100%;
+		display: flex;
+		margin-bottom: 35px;
+		justify-content: space-around;
+		align-items: flex-start;	
+	}
+	
+	.product-container2{
+		flex-wrap:wrap;
+	}
+	.product {
+		position: relative;
+		width: calc(33.33% - 20px); 
+		height: 500px;
+		margin-right: 30px;
+	}
+	
+	.product:last-child{
+		margin-right: 0;
+	}
+	
+	.product .product-image1 {
+		background-image: url("Kreshme1.jpg");
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	
+	.product .product-image2 {
+		background-image: url("Shahzadeh1.jpg");
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	
+	.product .product-image3 {
+		background-image: url("Taravat1.jpg");
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	
+	.product .product-image4 {
+		background-image: url("Ahoo1.jpg");
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	
+	.product .product-image5 {
+		background-image: url("Innocent1.jpg");
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	
+	.product .product-image6 {
+		background-image: url("Sword1.jpg");
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 5px;
+	}
+	
+		.quantityAhoo,.quantityInnocent, .quantityKreshme, 
+		.quantityShahzadeh, .quantitySword, .quantityTaravat {
+			width: 50px;
+			padding: 5px;
+			border-radius: 3px;
+			border: 1px solid #ccc; 
+			margin-top: 368px;
+		}
+	.product .product-info {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: rgba(255, 255, 255, 0.3);
+		width: 100%;
+		height: 500px;
+		padding: 10px;
+	}
+	
+	.product:hover .product-info {
+		display: block;
+	}
+	
+	.product:hover .product-image1 {
+		background-image: url("Kreshme2.jpg");
+	}
+	
+	.product:hover .product-image2 {
+		background-image: url("Shahzadeh2.jpg");
+	}
+	
+	.product:hover .product-image3 {
+		background-image: url("Taravat2.jpg");
+	}
+	
+	.product:hover .product-image4 {
+		background-image: url("Ahoo2.jpg");
+	}
+	
+	.product:hover .product-image5 {
+		background-image: url("Innocent2.jpg");
+	}
+	
+	.product:hover .product-image6 {
+		background-image: url("Sword2.jpg");
+	}
+
+	.add-to-cart{
+		width: 147px;
+		height: 28px;
+		border-radius: 5px;
+		background-color: darkgreen;
+		position: absolute;
+		bottom: 10px;
+		top: 97%;
+		left: calc(50% - 80px);
+	}	
+	
+	.add-to-cart:hover {
+		background-color: darkgreen;
+	}
+	
+	.basket {
+    position: fixed;
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-330%);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid darkgreen;
+    padding: 20px; 
+    border-radius: 10px; 
+}
+		
+		.checkoutSection{
+			display:none;
+		}
+		
+		.checkoutSection form {
+			width: 100%;
+			max-width: 600px;
+			margin: 0 auto;
+			margin-top: 100px;
+			padding: 20px;
+			background-color: #f9f9f9;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkoutSection form fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.checkoutSection form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.checkoutSection form input[type="text"],
+.checkoutSection form input[type="email"],
+.checkoutSection form input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+.clearBasket, .checkOut,
+.checkoutSection form input[type="submit"],
+.checkoutSection form input[type="reset"] {
+	display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: darkgreen;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.clearBasket, .checkOut,
+.checkoutSection form input[type="submit"]:hover,
+.checkoutSection form input[type="reset"]:hover {
+    background-color: #0056b3;
+}
+		input.invalid{
+			background-color: red !important;
+		}
+		
+		
+</style>
+<script>
+var basketItems = [];
+
+function addtoBasket(productName, productPrice , quantity) {
+	var excitingItem = basketItems.find(item => item.name === productName);
+	if (excitingItem) {
+		excitingItem.quantity += quantity;
+	}else{
+    basketItems.push({ name: productName, price: productPrice, quantity: quantity });
+	}
+    updateBasket();
+}
+
+function updateBasket() {
+  var basketList = document.getElementById('basket-items');
+  basketList.innerHTML = '';
+  var totalPrice = 0;
+  basketItems.forEach(function(item) {
+    var listItem = document.createElement('li');
+    listItem.textContent = item.name + " x " + item.quantity + " - $" + (item.price * item.quantity).toFixed(2);
+    basketList.appendChild(listItem);
+    totalPrice += item.price * item.quantity;
+    document.getElementById('showPrice').innerHTML = totalPrice;
+  });
+
+  var basket = document.getElementById('basket');
+  basket.style.display = 'block';
+	
+}
+
+function clearBasket() {
+  basketItems = [];
+  updateBasket();
+  var basket = document.getElementById('basket');
+  basket.style.display = 'none';
+  document.getElementById('showPrice').textContent= '0.00';
+}
+
+function checkOut() {
+    if (basketItems.length === 0) {
+        alert("Your basket is empty. Please add items to proceed to checkout.");
+    } else {
+        var checkoutSection = document.getElementById('checkoutSection');
+        checkoutSection.style.display = 'block';
+    }
+}
+
+
+function completePurchase() {
+	var firstName = document.getElementById('firstName').value.trim();
+	var lastName = document.getElementById('lastName').value.trim();
+	var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+	var basketItemList = document.getElementById('basket-items').innerHTML;
+	var totalPrice = document.getElementById('showPrice').textContent;
+	
+	var massage = "Thak you for your purchase!\n\n";
+	massage += "itema Bought:\n" + basketItemList + "\n";
+	massage += "Total Price: $" + totalPrice + "\n\n";
+	massage += "Customer Information: \n";
+	massage += "First Name: " + firstName + "\n";
+	massage += "Last Name: " + lastName + "\n";
+	massage += "Email: " + email + "\n";
+	massage += "Phone: " + phone + "\n";
+	
+	alert(massage);
+	return true;
+}
+
+	function validateForm(){
+		var isValid = true;
+		var firstName = document.getElementById('firstName').value.trim();
+		var lastName = document.getElementById('lastName').value.trim();
+		var email = document.getElementById('email').value.trim();
+		var phone = document.getElementById('phone').value.trim();
+		var emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		var phoneRegex = /^\d{11}$/;
+		var inputs = document.querySelectorAll('input');
+		inputs.forEach(function(input) {
+					   input.classList.remove('invalid');
+					   });
+		
+		if (firstName === '' || lastName === '' || !emailRegex.test(email) || phone.length !== 11)  {
+			isValid = false;
+			if (firstName === '') {
+			document.getElementById('firstName').classList.add('invalid');
+			}
+			if (lastName === '') {
+			document.getElementById('lastName').classList.add("invalid");
+			}
+
+		if (!emailRegex.test(email)) {
+			isValid = false;
+			document.getElementById('email').classList.add('invalid');
+		}
+		
+		if (!phoneRegex.test(phone)) {
+			isValid = false;
+			document.getElementById('phone').classList.add('invalid');
+		}
+		
+		}
+		if (isValid) {
+			completePurchase();
+		} else {
+			alert('Please enter valid indormation in the hilighted area. ');
+		}
+		return isValid;	
+	}
+	document.getElementById('checkoutForm').addEventListener('reset', function() {
+    var inputs = document.querySelectorAll('#checkoutForm input'); 
+    inputs.forEach(function(input) {
+        input.classList.remove('invalid');
+    });
+});
+	
+	
+
+</script>
+<title>Shop</title>
+</head>
+<body>
+	<div class="banner">
+		<div class="fakenavbar">
+			<img src="logoforcw.png" alt="logo" class="logo">
+			<div class="navbar">
+				<ul>
+					<li><a href="https://github.com/Parham0483/W2046966-blood/blob/17f9963325880e576a149970291e45183d7d6d71/Page%20Editor.html/" style="color: white">Home</a></li>
+					<li><a href="#" style="color: white">About</a></li>
+					<li><a href="Shop.html" style="color: white">Store</a></li>
+					<li><a href="#" style="color: white">Feedback</a></li>
+					<li><a href="#" style="color: white">Gallery</a></li>
+				</ul>
+			</div>
+		</div>
+	
+	
+	
+  <div class="product-container1">
+
+    <div class="product">
+        <div class="product-image1"></div>
+        <div class="product-info">
+          <h3>Kreshme Ring</h3>
+          <p>Price: 1009.99 $</p>
+          <p>Special and unique handmade artistic and spiritual collectionEngraved with Iranian gilding by master Ali Jangi</p>
+          <input type="number" class="quantityKreshme" value="1" min="1" onChange="total(1009.99)">
+          <button class="add-to-cart" onClick="addtoBasket('Kreshme Ring', 1009.99 , parseInt(document.querySelector('.quantityKreshme').value) )">Add to Cart</button>
+        </div>
+    </div>
+
+      <div class="product">
+      <div class="product-image2"></div>
+      <div class="product-info">
+      <h3>Shahzadeh Ring</h3>
+      <p>Price: 599.99 $</p>
+      <p>This effect of elegance and very high accuracy in design And its writing is used on this exquisite ring Fine gilding has been done and Attractive Amethyst stone It shines well on its crown.</p>
+      <input type="number" class="quantityShahzadeh" value="1" min="1"  onChange="total(599.99)">
+      <button class="add-to-cart" onClick="addtoBasket('Shahzadeh Ring',  599.99 , parseInt(document.querySelector('.quantityShahzadeh').value))">Add to Cart</button>
+      </div>
+      </div>
+      
+      <div class="product">
+      <div class="product-image3"></div>
+      <div class="product-info">
+      <h3>Taravat Ring</h3>
+      <p>Price: 1899 $</p>
+      <p>It takes about 60 days to make this work and using Very delicate pens and a lot of time has been spent. A very rich and delicate lasting work of pure Iranian art.</p>
+      <input type="number" class="quantityTaravat" value="1" min="1"  onChange="total(1899)">
+      <button class="add-to-cart" onClick="addtoBasket('Taravat Ring', 1899 , parseInt(document.querySelector('.quantityTaravat').value))">Add to Cart</button>
+      </div>
+      </div>
+      </div>
+		
+  <div class="product-container2">
+    <div class="product">
+        <div class="product-image4"></div>
+        <div class="product-info">
+           <h3>Ahoo Ring</h3>
+           <p>Price: 2199 $</p>
+           <p>Special and unique handmade ring which has been crafted accurately.You can see by looking at deer body which been carved with the highest accuracy </p>
+           <input type="number" class="quantityAhoo" value="1" min="1"  onChange="total(2199)">
+           <button class="add-to-cart" onClick="addtoBasket('Ahoo Ring', 2199 , parseInt(document.querySelector('.quantityAhoo').value))">Add to Cart</button>
+           </div>
+        </div>
+       <div class="product">
+       <div class="product-image5"></div>
+       <div class="product-info">
+       <h3>Innocent Ring</h3>
+       <p>Price: 789 $</p>
+       <p>In this exquisite ring, the blessed names of fourteen innocents with Nastaliq line and in the style of calligraphy with great elegance Above. </p>
+       <input type="number" class="quantityInnocent" value="1" min="1"  onChange="total(789)">
+       <button class="add-to-cart" onClick="addtoBasket('Innocent Ring', 789 , parseInt(document.querySelector('.quantityInnocent').value))">Add to Cart</button>
+       </div>
+       </div>
+       
+       <div class="product">
+       <div class="product-image6"></div>
+       <div class="product-info">
+       <h3>Sword Ring</h3>
+       <p>Price: 400 $</p>
+       <p>In this exquisite ring, the design of two swords is used on its two sides.
+       The agate that is used on this ring is decorated with the name "Allah".</p>
+       <input type="number" class="quantitySword" value="1" min="1"  onChange="total(400)">
+       <button class="add-to-cart" onClick="addtoBasket('Sword Ring', 400 , parseInt(document.querySelector('.quantitySword').value))">Add to Cart</button>
+         </div>
+         </div>
+    </div>
+    </div>
+    <div class="basket">
+    <h2>Basket</h2>
+    <ul id="basket-items"></ul>
+    <div class="totalPrice">
+		<p>Total:</p><p id="showPrice">0.00 $</p></div>
+    <button class="clearBasket" onClick="clearBasket()">Clear Basket</button>
+    <button class="checkOut" id="checkoutButton" onClick="checkOut()">Checkout</button>
+  </div>
+
+
+	<div id="checkoutSection" class="checkoutSection">
+    <h2>Checkout</h2>
+		<h3>Contact Details</h3>
+        <form id="checkoutForm" onSubmit="return validateForm()" onReset="validateForm()">
+		<fieldset>
+        <label for="firstName">Firstname: *</label>
+        <input type="text" class="firstName" id="firstName" name="firstName" required>
+			
+        <label for="lastName">Lastname: *</label>
+        <input type="text" class="lastName" id="lastName" name="lastName" required>
+			
+        <label for="email">Email:*</label>
+        <input type="text" class="email" id="email" name="email" required>
+        
+        <label for="phone">Phone Number: *</label>
+        <input type="text" class= "phone" id="phone" name="phone" required>
+			
+		
+		
+		</fieldset>
+		<fieldset>
+			<h3>Billing Address</h3>
+        <label for="address"> Address line1 *:</label>
+        <input id="address" name="address" required>
+		
+		<label for="address"> Address line2:</label>
+        <input id="address2" name="address2" >
+			
+		<label for="city">Town/City: *</label>
+        <input type="text" id="city" name="city" required>
+			
+		<label for="country">State/Country: *</label>
+        <input type="text" id="country" name="country" >
+			
+		<label for="postCode">Post-code: *</label>
+        <input type="text" id="postCode" name="postCode" required>
+			
+		<input type="submit" name="button" value="Complete purchase" class="rounded-button">
+		<input type="reset" name="button" value="Clear Fields" class="rounded-button">
+		
+        </fieldset>
+		
+		</form>
+		
+</div>
+</body>
+</html>
