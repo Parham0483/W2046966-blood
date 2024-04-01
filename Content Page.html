@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Content Page</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
+}
+
+.section {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.text {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text h2 {
+  color: #333;
+}
+
+.text p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.go-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: none;
+}
+
+.go-to-top:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .section {
+    flex-direction: column;
+  }
+
+  .text, .image {
+    flex: 1;
+  }
+
+  .text, .image img {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Content Page</h1>
+  <div class="buttons">
+    <button onclick="scrollToSection('f1')">Global Food Crisis</button>
+    <button onclick="scrollToSection('f2')">Causes of Hunger and Famine</button>
+    <button onclick="scrollToSection('f3')">Our Part</button>
+    <button onclick="scrollToSection('f4')">Action Against Hunger</button>
+  </div>
+  <div class="section" id="f1">
+    <div class="text">
+      <h2>A global food crisis</h2>
+      <p>Conflict, economic shocks, climate extremes and soaring fertilizer prices are combining to create a food crisis of unprecedented proportions. As many as 783 million people are facing chronic hunger. We have a choice: act now to save lives and invest in solutions that secure food security, stability and peace for all, or see people around the world facing rising hunger.</p>
+    </div>
+    <div class="image">
+      <img src="Content2.jpeg" alt="Global Food Crisis">
+    </div>
+  </div>
+
+  <div class="section" id="f2">
+    <div class="text">
+      <h2>The causes of hunger and famine</h2>
+      <p>This seismic hunger crisis has been caused by a deadly combination of factors. Conflict is still the biggest driver of hunger, with 70 percent of the world's hungry people living in areas afflicted by war and violence. Events in Ukraine are further proof of how conflict feeds hunger – forcing people out of their homes, wiping out their sources of income and wrecking countries’ economies.</p>
+    </div>
+    <div class="image">
+      <img src="Content1.png" alt="Causes of Hunger and Famine">
+    </div>
+  </div>
+
+  <div class="section" id="f3">
+    <div class="text">
+      <h2>Our part</h2>
+      <p>At Blood, we are deeply committed to addressing the pressing issue of world hunger, particularly among children in Africa. Understanding the dire consequences of food insecurity, we have made it our mission to make a tangible difference in the lives of those affected.</p>
+    </div>
+    <div class="image">
+      <img src="Content3.jpg" alt="Our Part">
+    </div>
+  </div>
+
+  <div class="section" id="f4">
+    <div class="text">
+      <h2>Action Against Hunger</h2>
+      <p>Action Against Hunger is an international humanitarian organization committed to ending world hunger. They work tirelessly to save the lives of malnourished children and provide communities with access to safe water and sustainable solutions to hunger.</p>
+    </div>
+    <div class="image">
+      <img src="content4.png" alt="Action Against Hunger">
+    </div>
+  </div>
+  <a href="#top" class="go-to-top">Go to Top</a>
+</div>
+<script>
+function scrollToSection(sectionId) {
+  var section = document.getElementById(sectionId);
+  window.scrollTo({
+    top: section.offsetTop - 50,
+    behavior: 'smooth'
+  });
+}
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.querySelector('.go-to-top').style.display = "block";
+  } else {
+    document.querySelector('.go-to-top').style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
