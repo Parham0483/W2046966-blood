@@ -149,7 +149,7 @@
     position: fixed;
     bottom: 10px; 
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-330%);
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: 2px solid darkgreen;
@@ -165,6 +165,7 @@
 			width: 100%;
 			max-width: 600px;
 			margin: 0 auto;
+			margin-top: 100px;
 			padding: 20px;
 			background-color: #f9f9f9;
 			border-radius: 8px;
@@ -338,22 +339,20 @@ function completePurchase() {
 <body>
 	<div class="banner">
 		<div class="fakenavbar">
-		  <img src="logoforcw.png" class="logo">
-		<div class="navbar">
-			<ul>
-				<li><home href="#" style="color: white">Home</home>
-				</li>
-				<li><about href="#" style="color: white">About</about></li>
-				<li><store href= "#" style="color: white">Store</store>
-				</li>
-				<li><feedback href="#" style="color: white">Feedback</feedback></li>
-				<li><gallery href="#" style="color: white">Gallery</gallery>
-				</li>
-			
-			</ul>
+			<img src="logoforcw.png" alt="logo" class="logo">
+			<div class="navbar">
+				<ul>
+					<li><a href="https://github.com/Parham0483/W2046966-blood/blob/17f9963325880e576a149970291e45183d7d6d71/Page%20Editor.html/" style="color: white">Home</a></li>
+					<li><a href="#" style="color: white">About</a></li>
+					<li><a href="Shop.html" style="color: white">Store</a></li>
+					<li><a href="#" style="color: white">Feedback</a></li>
+					<li><a href="#" style="color: white">Gallery</a></li>
+				</ul>
+			</div>
 		</div>
-		</div>
-	</div>
+	
+	
+	
   <div class="product-container1">
 
     <div class="product">
@@ -424,7 +423,7 @@ function completePurchase() {
          </div>
          </div>
     </div>
-    
+    </div>
     <div class="basket">
     <h2>Basket</h2>
     <ul id="basket-items"></ul>
