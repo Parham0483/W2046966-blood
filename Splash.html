@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+            background-color: aliceblue;
+            margin: 10px;
+            padding: 10px;
+            align-items: center;
+			border: 4px solid #0A5B09;
+			justify-content: center;
+			align-items:center;
+			text-align: center;
+			line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+		.mission{
+			font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+			font-size: 15px;
+			border-bottom: 2px dotted #0A5B09;
+			margin-bottom: 25px;
+		}
+		.studentDetails{
+			align-content: center;
+			font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+			font-size: 15px;
+			text-decoration-color: black;
+			border-bottom: 2px dotted #0A5B09;
+			margin-bottom: 25px;
+		}
+        .Loader {
+			text-decoration-color: black;
+			font-style: oblique;
+			font-size: 20px;
+            width: 256px;
+            height: 180px;
+            background-image: url(Loader.gif);
+            
+            margin-top : 2px;
+			margin: auto;
+			text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+        }
+		#countDisplay {
+			z-index: 999;
+			color:red;
+			text-align: center;
+			margin: auto;
+		}
+    </style>
+    <title>Splash</title>
+
+</head>
+<body >
+    <h1>Website Mission</h1>
+    <p class ="mission">Our mission at Majid Group is to contribute to the betterment of the world by striving to provide opportunities for those in need.<br> We are committed to allocating 40% of our profits towards supporting children in Africa, with the goal of alleviating hunger and fostering sustainable development.</p>
+    <h1>Group Members</h1>
+    <div class="studentDetails">
+        <ul>
+            <li>Parham Golmohammadi</li>
+            <li>Mikael Ahmad</li>
+            <li>Erild Kendrik</li>
+            <li>Kikkie</li>
+        </ul>
+    </div>
+	<div class="Loader">Home Page Is Loading<div id = "countDisplay"></div></div>
+	
+	<script>
+    function countDown() {
+        var count = 6;
+        var countDisplay = document.getElementById("countDisplay");
+        var countdownInterval = setInterval(function() {
+            count--;
+            if (count >= 0) {
+                countDisplay.textContent = count + "s";
+            } else {
+                clearInterval(countdownInterval);
+                countDisplay.textContent = "";
+            }
+        }, 1000);
+    }
+		countDown();
+     </script>
+    <meta http-equiv="refresh" content="5;url=https://intranet.ecs.westminster.ac.uk/modules/4COSC011W/js3.html">
+</body>
+</html>
